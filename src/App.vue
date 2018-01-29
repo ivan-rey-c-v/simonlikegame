@@ -160,7 +160,6 @@ export default {
     },
 
     startGame() {
-      console.log(this.botMoves);
       this.inGame = true;
       this.newLevel();
 
@@ -205,8 +204,10 @@ export default {
         await sleep(800);
 
         for (let value of this.botMoves) {
-          await addThenRemoveClass(this.nodes[value], 'animate', 1100)
-        console.log(this.nodes[value]);
+          if(this.inGame) {
+            await addThenRemoveClass(this.nodes[value], 'animate', 1100)
+          }
+
         }
 
       }
