@@ -105,10 +105,6 @@ export default {
   },
 
   computed: {
-    totalNodes() {
-      return this.nodes.length;
-    },
-
     buttonDisplay() {
       return this.inGame ? 'Reset Game' : 'Start';
     },
@@ -188,12 +184,12 @@ export default {
     generateMove() {
       let last = this.botMoves[this.botMoves.length - 1];
       let second = this.botMoves[this.botMoves.length - 2];
-      let third = this.botMoves[this.botMoves.length - 3];
+      let totalNodes = this.nodes.length;
 
       const _recursion = array => {
-        let number = randomNumber(0, this.totalNodes);
+        let number = randomNumber(0, totalNodes - 1);
 
-        return (number === last || number === second || number === third)
+        return (number === last || number === second)
           ? _recursion(array)
           : number;
       };
@@ -208,11 +204,10 @@ export default {
 
         for (let value of this.botMoves) {
           if(this.inGame) {
-            await addThenRemoveClass(this.nodes[value], 'animate', 1100)
+            let node = this.nodes[value];
+            await addThenRemoveClass(node, 'animate', 1100)
           }
-
         }
-
       }
       catch (error) {
         console.log(error);

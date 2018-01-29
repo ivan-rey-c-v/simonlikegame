@@ -6,5 +6,4 @@ export const addThenRemoveClass = async (node , className, ms) => {
 	node.classList.add(className);
 	await sleep(ms);
 	node.classList.remove(className);
-	return node;
 }

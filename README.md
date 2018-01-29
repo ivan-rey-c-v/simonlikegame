@@ -1,4 +1,4 @@
-# simon_game
+# A minimal Simon-like game.
 
 > Simon-like Game using Vue.js framework
 
