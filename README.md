@@ -1,6 +1,8 @@
 # simon_game
 
-> Simon-like Game
+> Simon-like Game using Vue.js framework
+
+Check it here: [Simon-like Game](https://ivan-rey-c-v.github.io/simonlikegame/)
 
 ## Build Setup
 
