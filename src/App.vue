@@ -8,18 +8,18 @@
       <div>
         <div v-show="level" class="flex flex-col ai-center">
           <p>
-            <small>Level</small>
+            <small>LEVEL</small>
           </p>
-          <p>{{level}}</p>
+          <p class="red">{{level}}</p>
         </div>
       </div>
 
       <div>
         <div v-show="taps" class="flex flex-col ai-center">
           <p>
-            <small> Remaining Taps </small>
+            <small>Remaining Taps</small>
           </p>
-          <p>{{taps}}</p>
+          <p class="red">{{taps}}</p>
         </div>
       </div>
 
@@ -128,7 +128,7 @@ export default {
   },
 
   watch: {
-    async playerMoves(newVal, oldVal) {
+    async playerMoves(newVal) {
       try {
         if (newVal.length === (this.botMoves.length || undefined )) {
           await sleep(600);
@@ -140,8 +140,10 @@ export default {
       }
     },
 
-    level(val) {
+    async level(val) {
       if (val > 20) {
+        this.display = 'Congratulations!';
+        await sleep(500);
         this.resetGame();
       }
     }
@@ -161,8 +163,8 @@ export default {
 
     startGame() {
       this.inGame = true;
+      this.display = "Let's Start!";
       this.newLevel();
-
     },
 
     async newLevel() {
@@ -170,7 +172,8 @@ export default {
         this.playerMoves = [];
         this.display = 'Next Level';
         this.addMove();
-        return await this.animateMoves();
+        await this.animateMoves();
+        this.display = 'Go!';
       }
       catch (error) {
         console.log(error);
@@ -260,7 +263,8 @@ export default {
         this.display = 'Oops!';
         await addThenRemoveClass(node, 'on-click-false', 500)
         if(this.isStrict) {
-          this.display = 'Sorry!';
+          this.display = 'Game Over';
+          await sleep(500);
           this.resetGame();
         } else {
           this.display = '';
@@ -281,7 +285,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 
   flex: 0 1 550px;
-  height: 100vh;
+  height: 100vh; min-width: 550px;
   background-color: rgb(109, 109, 109);
   color: white
 }
@@ -305,7 +309,5 @@ export default {
 
 .center-display {
 	grid-area: 2 / 2 / 3 / 3;
-  color: lightcoral, lightblue, lightgoldenrodyellow, lightgreen, lightsalmon,
-    lightslategray, lightpink, lightseagreen
 }
 </style>
