@@ -136,11 +136,10 @@ export default {
       }
     },
 
-    async level(val) {
+    level(val) {
       if (val > 20) {
-        this.display = 'Congratulations!';
-        await sleep(500);
         this.resetGame();
+        this.display = 'Congratulations!';
       }
     }
   },
@@ -155,6 +154,7 @@ export default {
       this.botMoves = [];
       this.playerMoves = [];
       this.isCheckingMoves = false;
+      this.display = '';
     },
 
     startGame() {
@@ -169,7 +169,7 @@ export default {
         this.display = 'Next Level';
         this.addMove();
         await this.animateMoves();
-        this.display = 'Go!';
+        this.display = this.inGame ? 'Go!' : '';
       }
       catch (error) {
         console.log(error);
@@ -198,6 +198,17 @@ export default {
       return _recursion();
     },
 
+    async animateMoves() {
+      try {
+        this.playerMoves = [];
+        await this.animateNodes();
+        this.isCheckingMoves = true;
+      }
+      catch (error) {
+        console.log(error);
+      }
+    },
+
     async animateNodes() {
       try {
         this.isCheckingMoves = false;
@@ -209,17 +220,7 @@ export default {
             await addThenRemoveClass(node, 'animate', 1100)
           }
         }
-      }
-      catch (error) {
-        console.log(error);
-      }
-    },
 
-    async animateMoves() {
-      try {
-        this.playerMoves = [];
-        await this.animateNodes();
-        this.isCheckingMoves = true;
       }
       catch (error) {
         console.log(error);
@@ -247,7 +248,7 @@ export default {
       try {
         this.display = 'Great!';
         this.playerMoves.push(index);
-        await addThenRemoveClass(node, 'on-click-true', 500)
+        await addThenRemoveClass(node, 'on-click-true', 500);
       }
       catch (error) {
         console.log(error);
@@ -263,7 +264,7 @@ export default {
           await sleep(500);
           this.resetGame();
         } else {
-          this.display = '';
+          this.display = 'Again';
           this.animateMoves();
         }
       }
