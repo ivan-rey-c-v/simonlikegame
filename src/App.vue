@@ -184,17 +184,18 @@ export default {
     generateMove() {
       let last = this.botMoves[this.botMoves.length - 1];
       let second = this.botMoves[this.botMoves.length - 2];
+      let third = this.botMoves[this.botMoves.length - 3];
       let totalNodes = this.nodes.length;
 
-      const _recursion = array => {
-        let number = randomNumber(0, totalNodes - 1);
+      const _recursion = () => {
+        let n = randomNumber(0, totalNodes - 1);
 
-        return (number === last || number === second)
-          ? _recursion(array)
-          : number;
+        return ( (n === last || n === second) || n === third)
+          ? _recursion()
+          : n;
       };
 
-      return _recursion(this.botMoves);
+      return _recursion();
     },
 
     async animateNodes() {
