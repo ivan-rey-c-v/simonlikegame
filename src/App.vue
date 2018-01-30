@@ -283,19 +283,23 @@ export default {
 
   flex: 0 1 550px;
   height: 100vh; min-width: 550px;
-  background-color: rgb(109, 109, 109);
+  background: linear-gradient(90deg, #243b55, #141e30);
   color: white
 }
 
 .button {
   border: none;
   background-color: lightseagreen;
-  box-shadow: -4px 4px 4px rgba(53, 53, 53, 0.877);
+  box-shadow: -4px 4px 4px #000000e0;
   border-radius: 2px;
   padding: 6px 14px;
   letter-spacing: 1px;
   font-size: inherit;
   color: white;
+  transition: all 500ms
+}
+.button:active {
+  transform: scale(.85);
 }
 
 .grid {
