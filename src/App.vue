@@ -10,7 +10,7 @@
           <p>
             <small>LEVEL</small>
           </p>
-          <p class="yellow">{{level}}</p>
+          <p class="yellow fw7">{{level}}</p>
         </div>
       </div>
 
@@ -19,7 +19,7 @@
           <p>
             <small>Remaining Taps</small>
           </p>
-          <p class="yellow">{{taps}}</p>
+          <p class="yellow fw7">{{taps}}</p>
         </div>
       </div>
 
