@@ -10,42 +10,42 @@
 
 <script>
 export default {
-  name: 'StrictButton',
-  data () {
+  name: "StrictButton",
+  data() {
     return {
-      isStrict: false,
-    }
+      isStrict: false
+    };
   },
-
 
   methods: {
     toggle() {
       this.isStrict = !this.isStrict;
-      this.$emit('toggle');
+      this.$emit("toggle");
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 button {
   border: none;
-  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.50);
+  box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0.2);
   border-radius: 50%;
   padding: 5px 10px;
   letter-spacing: 1px;
   font-size: 50%;
-  height: 2rem; width: 2rem;
+  height: 2rem;
+  width: 2rem;
   transition: all 200ms;
   color: rgb(58, 44, 44);
-  background-color: rgba(118, 172, 177, 0.507)
+  background-color: rgb(88, 166, 173);
 }
 .strict-mode {
-  transform: scale(1.20);
+  transform: scale(1.2);
   color: #ffffff;
   font-weight: 700;
   background-color: #ff0033;
-  border: none
+  border: none;
 }
 </style>

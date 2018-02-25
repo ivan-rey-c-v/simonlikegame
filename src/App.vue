@@ -71,21 +71,20 @@ export default {
   name: "App",
   components: {
     StrictButton,
-    IconImage,
+    IconImage
   },
   data() {
     return {
       shapes: [
-				{index: 0, entity: '&nwarr;', color: 'lightcoral'},
-				{index: 1, entity: '&Cap;', color: 'lightblue'},
-				{index: 2, entity: '&nearr;', color: 'lightgoldenrodyellow'},
-				{index: 3, entity: '&nltri;', color: 'lightgreen'},
-				{index: 4, entity: '&nrtri;', color: 'lightsalmon'},
-				{index: 5, entity: '&swarr;', color: 'lightslategray'},
-				{index: 6, entity: '&Cup;', color: 'lightpink'},
-				{index: 7, entity: '&searr;', color: 'lightseagreen'},
-			],
-
+        { index: 0, entity: "A", color: "lightcoral" },
+        { index: 1, entity: "B", color: "lightblue" },
+        { index: 2, entity: "C", color: "darkgoldenrod" },
+        { index: 3, entity: "D", color: "lightgreen" },
+        { index: 4, entity: "E", color: "lightsalmon" },
+        { index: 5, entity: "F", color: "darkmagenta" },
+        { index: 6, entity: "G", color: "lightpink" },
+        { index: 7, entity: "H", color: "lightseagreen" }
+      ],
 
       inGame: false,
       isStrict: false,
@@ -95,8 +94,8 @@ export default {
       botMoves: [],
       playerMoves: [],
 
-      display: '',
-      onNextLevel: ''
+      display: "",
+      onNextLevel: ""
     };
   },
 
@@ -106,11 +105,11 @@ export default {
 
   computed: {
     buttonDisplay() {
-      return this.inGame ? 'Reset Game' : 'Start';
+      return this.inGame ? "Reset Game" : "Start";
     },
 
     level() {
-      return this.botMoves.length
+      return this.botMoves.length;
     },
 
     taps() {
@@ -120,18 +119,16 @@ export default {
     buttonEvent() {
       return this.inGame ? this.resetGame : this.startGame;
     }
-
   },
 
   watch: {
     async playerMoves(newVal) {
       try {
-        if (newVal.length === (this.botMoves.length || undefined )) {
+        if (newVal.length === (this.botMoves.length || undefined)) {
           await sleep(600);
           this.newLevel();
         }
-      }
-      catch (error) {
+      } catch (error) {
         console.log(error);
       }
     },
@@ -139,7 +136,7 @@ export default {
     level(val) {
       if (val > 20) {
         this.resetGame();
-        this.display = 'Congratulations!';
+        this.display = "Congratulations!";
       }
     }
   },
@@ -154,7 +151,7 @@ export default {
       this.botMoves = [];
       this.playerMoves = [];
       this.isCheckingMoves = false;
-      this.display = '';
+      this.display = "";
     },
 
     startGame() {
@@ -166,12 +163,11 @@ export default {
     async newLevel() {
       try {
         this.playerMoves = [];
-        this.display = 'Next Level';
+        this.display = "Next Level";
         this.addMove();
         await this.animateMoves();
-        this.display = this.inGame ? 'Go!' : '';
-      }
-      catch (error) {
+        this.display = this.inGame ? "Go!" : "";
+      } catch (error) {
         console.log(error);
       }
     },
@@ -190,9 +186,7 @@ export default {
       const _recursion = () => {
         let n = randomNumber(0, totalNodes - 1);
 
-        return ( (n === last || n === second) || n === third)
-          ? _recursion()
-          : n;
+        return n === last || n === second || n === third ? _recursion() : n;
       };
 
       return _recursion();
@@ -203,8 +197,7 @@ export default {
         this.playerMoves = [];
         await this.animateNodes();
         this.isCheckingMoves = true;
-      }
-      catch (error) {
+      } catch (error) {
         console.log(error);
       }
     },
@@ -215,21 +208,18 @@ export default {
         await sleep(800);
 
         for (let value of this.botMoves) {
-          if(this.inGame) {
+          if (this.inGame) {
             let node = this.nodes[value];
-            await addThenRemoveClass(node, 'animate', 1100)
+            await addThenRemoveClass(node, "animate", 1100);
           }
         }
-
-      }
-      catch (error) {
+      } catch (error) {
         console.log(error);
       }
     },
 
     onClick(index) {
-
-      if(this.isCheckingMoves) {
+      if (this.isCheckingMoves) {
         let node = this.nodes[index];
         return this.checkMove(index)
           ? this.onCorrectMove(node, index)
@@ -246,29 +236,27 @@ export default {
 
     async onCorrectMove(node, index) {
       try {
-        this.display = 'Great!';
+        this.display = "Great!";
         this.playerMoves.push(index);
-        await addThenRemoveClass(node, 'on-click-true', 500);
-      }
-      catch (error) {
+        await addThenRemoveClass(node, "on-click-true", 500);
+      } catch (error) {
         console.log(error);
       }
     },
 
     async onWrongMove(node, index) {
       try {
-        this.display = 'Oops!';
-        await addThenRemoveClass(node, 'on-click-false', 500)
-        if(this.isStrict) {
-          this.display = 'Game Over';
+        this.display = "Oops!";
+        await addThenRemoveClass(node, "on-click-false", 500);
+        if (this.isStrict) {
+          this.display = "Game Over";
           await sleep(500);
           this.resetGame();
         } else {
-          this.display = 'Again';
+          this.display = "Again";
           this.animateMoves();
         }
-      }
-      catch (error) {
+      } catch (error) {
         console.log(error);
       }
     }
@@ -282,33 +270,39 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 
   flex: 0 1 550px;
-  height: 100vh; min-width: 550px;
-  background: linear-gradient(90deg, #243b55, #141e30);
-  color: white
+  height: 100vh;
+  min-height: 450px;
+  background: linear-gradient(180deg, #182848, #4b6cb7);
+  color: white;
 }
 
 .button {
-  border: none;
-  background-color: lightseagreen;
-  box-shadow: -4px 4px 4px #000000e0;
-  border-radius: 2px;
   padding: 6px 14px;
-  letter-spacing: 1px;
+  font-weight: 600;
   font-size: inherit;
+
+  border: none;
+  border-radius: 2px;
+  letter-spacing: 1px;
+
   color: white;
-  transition: all 500ms
+  text-shadow: 1px 1px 0 hsla(0, 0%, 0%, 0.2);
+  background: linear-gradient(90deg, #c1403d, crimson);
+  box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0.2);
+
+  transition: all 500ms;
 }
 .button:active {
-  transform: scale(.85);
+  transform: scale(0.85);
 }
 
 .grid {
-	display: grid;
-	grid-template-columns: 1.5fr 2fr 1.5fr;
-	grid-template-rows: 1.5fr 2fr 1.5fr;
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1.5fr;
+  grid-template-rows: 1.5fr 2fr 1.5fr;
 }
 
 .center-display {
-	grid-area: 2 / 2 / 3 / 3;
+  grid-area: 2 / 2 / 3 / 3;
 }
 </style>
