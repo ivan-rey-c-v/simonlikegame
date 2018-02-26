@@ -1,9 +1,7 @@
-# A minimal Simon-like game.
-
-> Simon-like Game using Vue.js framework
-
+# A minimal Simon-like game using Vue.js framework.
 Check it here: [Simon-like Game](https://ivan-rey-c-v.github.io/simonlikegame/)
-
+![screenshot](Screenshot-2018-2-26 Simon-like Game.png
+)
 ## Build Setup
 
 ``` bash
