@@ -1,6 +1,6 @@
 # A minimal Simon-like game using Vue.js framework.
 Check it here: [Simon-like Game](https://ivan-rey-c-v.github.io/simonlikegame/)
-![screenshot](screenshot.png
+![screenshot](./screenshot.png
 )
 ## Build Setup
 
