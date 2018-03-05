@@ -30,7 +30,7 @@
     </header>
 
     <div class="body">
-      <div class="grid">
+      <div class="grid h-full w-full">
 
 	      <div v-for="shape in shapes"
 	    	  :key="shape.index"
@@ -305,15 +305,12 @@ export default {
   max-height: calc(700px - 7rem);
 }
 
-@supports (display:flex) {
-  .grid {
-    display: grid;
-    grid-template-columns: 1.5fr 2fr 1.5fr;
-    grid-template-rows: 1.5fr 2fr 1.5fr;
-  }
-
-  .center-display {
-    grid-area: 2 / 2 / 3 / 3;
-  }
+.grid {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1.5fr;
+  grid-template-rows: 1.5fr 2fr 1.5fr;
+}
+.center-display {
+  grid-area: 2 / 2 / 3 / 3;
 }
 </style>
