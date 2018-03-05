@@ -29,25 +29,27 @@
       </StrictButton>
     </header>
 
-    <div class="grid">
+    <div class="body">
+      <div class="grid">
 
-	    <div v-for="shape in shapes"
-	  	  :key="shape.index"
-			  class="flex jc-center ai-center"
-	    >
-		    <IconImage
-				  :entity="shape.entity"
-				  :color="shape.color"
-          :index="shape.index"
-          @onClick="onClick"
-			  >
-			  </IconImage>
-	    </div>
+	      <div v-for="shape in shapes"
+	    	  :key="shape.index"
+		  	  class="flex jc-center ai-center"
+	      >
+		      <IconImage
+		  		  :entity="shape.entity"
+		  		  :color="shape.color"
+            :index="shape.index"
+            @onClick="onClick"
+		  	  >
+		  	  </IconImage>
+	      </div>
 
-	    <div class="center-display flex flex-col jc-center ai-center">
-        <h2>
-          {{display}}
-        </h2>
+	      <div class="center-display flex flex-col jc-center ai-center">
+          <h2>
+            {{display}}
+          </h2>
+        </div>
       </div>
     </div>
 
@@ -79,11 +81,11 @@ export default {
         { index: 0, entity: "A", color: "lightcoral" },
         { index: 1, entity: "B", color: "lightblue" },
         { index: 2, entity: "C", color: "darkgoldenrod" },
-        { index: 3, entity: "D", color: "lightgreen" },
+        { index: 3, entity: "D", color: "lightseagreen" },
         { index: 4, entity: "E", color: "lightsalmon" },
         { index: 5, entity: "F", color: "darkmagenta" },
         { index: 6, entity: "G", color: "lightpink" },
-        { index: 7, entity: "H", color: "lightseagreen" }
+        { index: 7, entity: "H", color: "darkred" }
       ],
 
       inGame: false,
@@ -272,6 +274,7 @@ export default {
   flex: 0 1 550px;
   height: 100vh;
   min-height: 450px;
+  max-height: 700px;
   background: linear-gradient(180deg, #182848, #4b6cb7);
   color: white;
 }
@@ -296,8 +299,10 @@ export default {
   transform: scale(0.85);
 }
 
-.grid {
-  flex: 1 1 50px;
+.body {
+  height: calc(100vh - 7rem);
+  min-height: calc(450px - 7rem);
+  max-height: calc(700px - 7rem);
 }
 
 @supports (display:flex) {
