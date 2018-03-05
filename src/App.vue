@@ -29,7 +29,7 @@
       </StrictButton>
     </header>
 
-    <div class="grow-1 grid">
+    <div class="grid">
 
 	    <div v-for="shape in shapes"
 	  	  :key="shape.index"
@@ -297,12 +297,18 @@ export default {
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: 1.5fr 2fr 1.5fr;
-  grid-template-rows: 1.5fr 2fr 1.5fr;
+  flex: 1 1 50px;
 }
 
-.center-display {
-  grid-area: 2 / 2 / 3 / 3;
+@supports (display:flex) {
+  .grid {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1.5fr;
+    grid-template-rows: 1.5fr 2fr 1.5fr;
+  }
+
+  .center-display {
+    grid-area: 2 / 2 / 3 / 3;
+  }
 }
 </style>
